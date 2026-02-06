@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Entrada</title>
+
+<!-- FUENTE PRO -->
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap" rel="stylesheet">
+
+<style>
+/* FONDO */
+body {
+  margin: 0;
+  height: 100vh;
+  background: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* CONTENEDOR */
+.contenedor {
+  text-align: center;
+}
+
+/* EYE */
+.eye {
+  width: 270px;
+
+  animation:
+    vibrar 1.5s infinite,
+    palpitar 1s ease-in-out infinite;
+
+  filter: drop-shadow(0 0 20px red);
+}
+
+
+/* VIBRACIÓN */
+@keyframes vibrar {
+  0%   { transform: translate(0, 0); }
+  20%  { transform: translate(-1px, 1px); }
+  40%  { transform: translate(1px, -1px); }
+  60%  { transform: translate(-1px, -1px); }
+  80%  { transform: translate(1px, 1px); }
+  100% { transform: translate(0, 0); }
+}
+
+/* BOTÓN NORMAL */
+.boton {
+  margin-top: 60px;
+  padding: 10px 50px;
+  background: transparent;
+  color: white;
+  border: 2px solid red;
+  cursor: pointer;
+  letter-spacing: 0.5px;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 15px;
+  transition: all 0.3s ease;
+}
+
+/* EFECTO AL PASAR EL MOUSE */
+.boton:hover {
+  background: red;
+  color: rgb(248, 248, 248);
+  box-shadow: 0 0 40px red;
+  transform: scale(1.05);
+}
+/* ============================= */
+/* 📱 RESPONSIVE PARA ANDROID */
+/* ============================= */
+
+@media (max-width: 768px) {
+
+  /* OJO más pequeño en celular */
+  .eye {
+    width: 170px;
+  }
+
+  /* Botón más grande y cómodo para tocar con el dedo */
+  .boton {
+    padding: 12px 60px;
+    font-size: 16px;
+  }
+
+  /* Contenedor con un poco más de espacio */
+  .contenedor {
+    padding: 0 15px;
+  }
+}
+</style> 
+</head>
+
+<body>
+
+<div class="contenedor">
+  <img src="eye.png" class="eye">
+  <br>
+  <!-- CLICK CON SONIDO -->
+  <button class="boton" onclick="entrar()">INGRESAR</button>
+</div>
+
+<!-- AUDIO -->
+<audio id="clickSound" src="click.mp3"></audio>
+
+<script>
+function entrar() {
+  const sonido = document.getElementById("clickSound");
+  sonido.currentTime = 0;
+  sonido.play();
+
+  setTimeout(() => {
+    window.location.href = "home.html";
+  }, 2000);
+}
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,859 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+<title>Damonsthers Mods</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Oxanium:wght@600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap" rel="stylesheet">
+
+<style> 
+
+body {
+  margin: 0;
+  background:
+    linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)),
+    url("img/fondo.png");
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  color: white;
+  font-family: Arial, sans-serif;
+}
+
+
+
+/* ===== BOTONES REDES ===== */
+.redes-container{
+  display:flex;
+  justify-content:center;
+  gap:50px;
+  margin-top:20px;
+}
+
+.icono-red{
+  width:95px;              /* un poco más grande */
+  transition: all 0.3s ease;
+  cursor:pointer;
+  border-radius: 50px;
+  box-shadow: 
+    0 0 10px #2b6cff,
+    0 0 20px #2b6cff,
+    0 0 30px #2b6cff;  /* azul intenso tipo neón */
+}
+
+
+.icono-red:hover{
+  transform: scale(1.08);
+  box-shadow: 
+    0 0 15px #1e5bff,
+    0 0 30px #1e5bff,
+    0 0 45px #1e5bff;
+}
+
+
+/* ===== ESPACIO EXTRA ABAJO PARA TODA LA PÁGINA ===== */
+body{
+  padding-bottom: 80px;   /* ← espacio extra abajo */
+}
+
+/* Asegura espacio en todas las secciones */
+.seccion{
+  padding-bottom: 40px;
+}
+
+/* Espacio adicional para las tarjetas de aportes */
+.aportes-grid{
+  padding-bottom: 30px;
+}
+
+/* ========== REPRODUCTOR NEÓN PRO ========== */
+
+.music-ui{
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: rgba(0,0,0,0.95);
+  padding: 10px 14px;
+  border-radius: 50px;
+  border: 1px solid #ff0000;
+  box-shadow: 0 0 15px red, 0 0 30px red;
+  backdrop-filter: blur(6px);
+  z-index: 9999;
+}
+
+/* BOTÓN REDONDO NEÓN */
+#btn-music{
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #ff3333, #600000);
+  color: white;
+  border: 1px solid red;
+  cursor: pointer;
+  font-size: 18px;
+  box-shadow: 0 0 12px red, 0 0 22px red;
+  transition: all 0.3s ease;
+}
+
+#btn-music:hover{
+  transform: scale(1.12);
+  box-shadow: 0 0 20px red, 0 0 40px red;
+}
+
+/* BARRA DE PROGRESO NEÓN */
+.barra{
+  width: 140px;
+  height: 7px;
+  background: #120000;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: inset 0 0 6px red;
+}
+
+.progreso{
+  width: 0%;
+  height: 100%;
+  background: linear-gradient(90deg, red, #ff6666);
+  box-shadow: 0 0 10px red;
+  transition: width 0.15s linear;
+}
+
+
+
+
+/* ====== FUENTES ====== */
+@font-face {
+  font-family: "Orbitron-Black";
+  src: url("fonts/Orbitron-Black.ttf");
+}
+@font-face {
+  font-family: "Ethnocentric";
+  src: url("fonts/Ethnocentric.otf");
+}
+@font-face {
+  font-family: "Orbitronht";
+  src: url("fonts/Orbitronht.ttf");
+}
+@font-face {
+  font-family: "HighriseFont";
+  src: url("fonts/HighriseFont.otf");
+}
+
+.texto-redes{
+  font-family: "Orbitronht", sans-serif;
+  font-weight: 200;        /* ← HACE LA LETRA MÁS GRUESA */
+  letter-spacing: 0.4px;
+  max-width: 780px;        /* ← LIMITA EL ANCHO DEL TEXTO */
+  margin: 10px auto 25px auto; /* ← lo centra y evita que se abra a los lados */
+  text-align: center;
+  line-height: 1.4;        /* ← mejora la lectura */
+}
+
+
+
+.titulo-redes{
+  font-family: "Orbitron-Black", sans-serif; /* misma estética que tu título */
+  letter-spacing: 2px;
+}
+/* ===== TEXTO DENTRO DE LA TARJETA ===== */
+
+/* PRIMERA LÍNEA */
+.creator{
+  font-family: "Orbitronht", sans-serif;
+  font-weight: 900;
+  color: rgb(255, 0, 0);
+  letter-spacing: 1px;
+  font-size: 14px;
+  margin: 6px 0;
+}
+
+/* SEGUNDA LÍNEA */
+.password{
+  font-family: "Orbitronht", sans-serif; /* más limpia y legible */
+  font-weight: 900;
+  color: #d1d1d1;
+  letter-spacing: 0.5px;
+  font-size: 13px;
+  margin: 4px 0;
+}
+.verde{
+  color: #00ff00;
+}
+.peso{
+  font-family: "Orbitronht", sans-serif;
+  font-weight: 900;
+  color: #d1d1d1;
+  letter-spacing: 0.5px;
+  font-size: 13px;
+  margin: 4px 0;
+}
+.rojo{
+  color: red;
+  font-weight: bold;
+}
+
+
+
+/* ----- CABECERA ----- */
+.hero {
+  text-align: center;
+  padding-top: 60px;
+}
+
+/* TITULO */
+.titulo {
+ font-family: 'Orbitron-Black', sans-serif;
+  font-size: 64px;
+  letter-spacing: 1px;
+  background: linear-gradient(
+    to bottom,
+    #ffffff 0%,
+    #ff0000 30%,
+    #ff0000 60%,
+    #ffffff 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow:
+    0 0 10px rgba(255, 0, 0, 0.6),
+    0 0 25px rgba(255, 0, 0, 0.4),
+    0 0 45px rgba(255, 0, 0, 0.2);
+}
+
+/* SUBTITULO */
+.subtitulo {
+  margin-top: 8px;
+  font-size: 12px;
+  letter-spacing: 1px;
+  color: rgba(235, 229, 229, 0.849);
+}
+
+/* ============================= */
+/* MENÚ */
+/* ============================= */
+
+.menu{
+  margin-top: 40px;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: nowrap;
+  width: 100%;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+/* ====== BARRA DETRÁS DE TODOS LOS BOTONES ====== */
+.menu-wrapper{
+  width: 100%;
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+  padding: 0;           /* IMPORTANTE PARA ANDROID */
+}
+
+
+/* FONDO + LÍNEA NEÓN ROJA */
+.menu{
+  background: rgba(0, 0, 0, 0.85);
+  padding: 12px 20px;
+  border-top: 1px solid red;
+  border-bottom: 1px solid red;
+  border-radius: 6px;
+  box-shadow: 0 0 15px red;
+}
+
+
+.menu button{
+  background: linear-gradient(90deg, #0b0b0b, #1a0000);
+  color: white;
+  border: 1px solid red;
+  padding: 10px 22px;
+  cursor:pointer;
+  font-weight:bold;
+  text-transform: uppercase;
+  transform: skew(-12deg);
+  transition: all 0.3s ease;
+  font-family: "Orbitronht", sans-serif;
+  letter-spacing: 1px;
+}
+
+.menu button span{
+  display:inline-block;
+  transform: skew(12deg);
+}
+
+.menu button:hover{
+  background: linear-gradient(90deg, #ff0000, #300000);
+  box-shadow: 0 0 15px red;
+  transform: skew(-12deg) translateY(-3px);
+}
+
+/* BOTÓN SELECCIONADO */
+.menu button.activo{
+  background: linear-gradient(90deg, #ff0000, #300000);
+  box-shadow: 0 0 15px red;
+  transform: skew(-12deg) translateY(-3px);
+}
+
+/* ============================= */
+/* SECCIONES */
+/* ============================= */
+
+.seccion {
+  display: none;
+}
+
+/* EQUIPO POR DEFECTO */
+#equipo {
+  display: grid;
+}
+
+/* ============================= */
+/* STAFF */
+/* ============================= */
+
+.staff{
+  display: grid;
+  grid-template-columns: repeat(2, 400px);
+  justify-content: center;
+  column-gap: 40px;
+  row-gap: 20px;
+  margin-top:70px;
+}
+
+.card{
+  width: 400px;
+  height: 230px;
+  border:0.1px solid rgb(255, 0, 0);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  background: rgba(0, 0, 0, 0.863);
+  transition: all 1s ease;
+  gap: 18px;
+
+  position: relative;
+  overflow: hidden; /* clave para el flash */
+}
+
+.card:hover{
+  transform: translateY(-8px);
+  box-shadow:
+    0 0 10px rgb(255, 255, 255),
+    0 0 25px red,
+    0 0 45px red;
+}
+
+/* ============================= */
+/* ✨ FLASH SUAVE TIPO NEBLINA (UNIFICADO PARA TODO) ✨ */
+/* ============================= */
+
+.card::before,
+.aporte-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -150%;
+  width: 120%;
+  height: 100%;
+
+  background: linear-gradient(
+    120deg,
+    rgba(255,255,255,0) 0%,
+    rgba(255,0,0,0.25) 45%,
+    rgba(255,255,255,0) 100%
+  );
+
+  filter: blur(18px);        /* ← hace que sea NEBLINA y no mancha */
+  transform: skew(-15deg);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+/* Se activa al pasar el mouse en TODOS los apartados */
+.card:hover::before,
+.aporte-card:hover::before {
+  opacity: 1;
+  animation: flash 1.4s ease;
+}
+
+/* Animación de barrido */
+@keyframes flash {
+  0% { left: -150%; }
+  100% { left: 150%; }
+}
+
+
+/* Animación del flash */
+@keyframes flash {
+  0% { left: -150%; }
+  100% { left: 150%; }
+}
+
+
+.avatar{
+  width:90px;
+  height:90px;
+  border-radius:50%;
+  border:2px solid red;
+  background:black;
+  overflow:hidden;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.avatar img{
+  width:100%;
+  height:100%;
+  object-fit: cover;
+}
+
+.name{
+  color:white;
+  font-size:20px;
+  font-weight:bold;
+  font-family: "Ethnocentric", sans-serif;
+  letter-spacing: 2px;
+}
+
+.role{
+  color:gray;
+  font-size:12px;
+  font-family: "Orbitronht", monospace;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+/* ============================= */
+/* APORTES (ESTILO IMAGEN) */
+/* ============================= */
+
+.aportes-grid{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 340px));
+  justify-content: center;
+  gap: 30px;
+  width: 95%;
+  max-width: 1100px;
+  margin: 60px auto 0 auto;
+}
+
+
+.aporte-card{
+  background: rgba(0,0,0,0.9);
+  border: 1px solid red;
+  padding: 15px;
+  text-align: left;
+  transition: all 0.4s ease;
+
+  position: relative;
+  overflow: hidden; /* clave para el flash */
+}
+
+
+.aporte-card:hover{
+  box-shadow: 0 0 10px red;
+  transform: translateY(-5px);
+}
+
+
+.aporte-card h3{
+  color: red;
+  font-family: "Ethnocentric", sans-serif;
+  margin-top: 6px;      /* lo sube */
+  margin-bottom: 5px;
+}
+
+.creator, .pass{
+  font-size: 12px;
+  color: #ccc;
+}
+
+.video-thumb{
+  position: relative;
+  margin: 12px 0;
+  border: 1px solid red;
+}
+
+.video-thumb img{
+  width: 100%;
+  display: block;
+}
+
+.play{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: red;
+  color: white;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size: 22px;
+}
+
+.btn-descarga{
+  display:block;
+  text-align:center;
+  background: linear-gradient(90deg, #ff0000, #300000);
+  color:white;
+  text-decoration:none;
+  padding:14px;
+  font-family: "MiBoton", "Orbitronht", sans-serif;
+  font-size: 18px;           /* ← AUMENTA TAMAÑO DE LETRA */
+  letter-spacing: 2px;       /* separación inicial */
+  border: 1px solid red;
+  transition: all 0.35s ease;
+}
+
+/* brillo al pasar el mouse */
+.btn-descarga:hover{
+  box-shadow: 0 0 15px red;
+  transform: translateY(-2px);
+}
+.btn-descarga:hover{
+  box-shadow: 0 0 20px red;
+  transform: translateY(-4px) scale(1.03); /* SALTO SUAVE */
+  letter-spacing: 5px;  /* LAS LETRAS SE SEPARAN */
+  animation: latido 2.0s infinite; /* PALPITAR */
+}
+
+/* ANIMACIÓN DE PALPITAR */
+@keyframes latido {
+  0% { transform: translateY(-4px) scale(1.03); }
+  50% { transform: translateY(-6px) scale(1.06); }
+  100% { transform: translateY(-4px) scale(1.03); }
+}
+
+
+
+/* ============================= */
+/* RESPONSIVE ANDROID */
+/* ============================= */
+
+@media (max-width: 768px) {
+
+  .titulo {
+    font-size: 36px;
+  }
+
+  .menu {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .menu button {
+    width: 45%;
+    padding: 12px 0;
+  }
+
+  .staff {
+  display: grid;
+  grid-template-columns: 1fr; /* 1 tarjeta por fila en móvil */
+  justify-items: center;
+  gap: 25px;
+}
+.staff {
+  grid-template-columns: 1fr;
+}
+
+  .card {
+  width: 90%;
+  max-width: 400px; /* para que no se estiren demasiado */
+  height: auto;
+  padding: 20px 0;
+}
+ .aportes-grid{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 340px));
+  justify-content: center;
+  gap: 30px;
+  width: 95%;
+  max-width: 1100px;
+  margin: 60px auto 0 auto;
+}
+    /* Permite que TODAS las secciones cambien bien en Android */
+  .seccion {
+    width: 100%;
+  }
+  body {
+  background-attachment: scroll;
+}
+}
+
+</style>
+</head>
+
+<body>
+
+<audio id="musica" loop autoplay>
+  <source src="music/lovers.mp3" type="audio/mpeg">
+</audio>
+
+
+<div class="hero">
+  <div class="titulo">DAMONSTHERS MODS</div>
+  <div class="subtitulo">¡BIENVENIDOS AL MOVIMIENTO, ANDAMOS AL GARETE!</div>
+
+  <div class="menu-wrapper">
+  <div class="menu">
+    <button onclick="mostrar('equipo', this)"><span>EQUIPO DMG</span></button>
+    <button onclick="mostrar('aportes', this)"><span>APORTES DMG</span></button>
+    <button onclick="mostrar('datas', this)"><span>DATAS DMG</span></button>
+    <button onclick="mostrar('descargas', this)"><span>APORTES MÁS DESCARGADOS</span></button>
+    <button onclick="mostrar('redes', this)"><span>¿COMO ENCONTRARNOS?</span></button>
+  </div>
+</div>
+
+
+<!-- ====== EQUIPO ====== -->
+<div id="equipo" class="seccion staff">
+
+  <div class="card">
+    <div class="avatar"><img src="img/owner.png"></div>
+    <div class="name">DAFUKZITH</div>
+    <div class="role">OWNER</div>
+  </div>
+
+  <div class="card">
+    <div class="avatar"><img src="img/soko.png"></div>
+    <div class="name">Zrk.7</div>
+    <div class="role">SUB OWNER</div>
+  </div>
+
+  <div class="card">
+    <div class="avatar"><img src="img/cbug.png"></div>
+    <div class="name">ivan</div>
+    <div class="role">SUB OWNER</div>
+  </div>
+
+  <div class="card">
+    <div class="avatar"><img src="img/david.png"></div>
+    <div class="name">MENDOZA</div>
+    <div class="role">SUB OWNER</div>
+  </div>
+
+</div>
+
+<!-- ====== APORTES ====== -->
+<div id="aportes" class="seccion aportes-grid" style="margin-top:60px;">
+
+  <div class="aporte-card">
+    <h3>AKA38</h3>
+   <p class="creator">CREADOR: DAFU</p>
+   <p class="password">CONTRASEÑA: <span class="verde">NINGUNA</span>
+</p>
+   <p class="peso">PESO: <span class="rojo">254MB</span></p>
+   <div class="video-thumb">
+  <img src="img/38.png" alt="AKA38">
+</div>
+
+
+    <a href="https://www.mediafire.com/file/iwjweioh64moaw8/Aka38.rar/file" class="btn-descarga">
+  DESCARGA EL APORTE
+</a>
+
+  </div>
+
+  <div class="aporte-card">
+    <h3>VERDE PRIV</h3>
+    <p class="creator">CREADOR: DAFU</p>
+    <p class="password">CONTRASEÑA: <span class="verde">NINGUNA</span>
+    <p class="peso">PESO: <span class="rojo">224MB</span></p>
+    <div class="video-thumb">
+  <img src="img/verde.png" alt="VERDE PRIV">
+</div>
+
+    <a href="https://www.mediafire.com/file/cno2noe2h4qcwkl/Verde_Priv.rar/file" class="btn-descarga">DESCARGA EL APORTE</a>
+  </div>
+
+  <div class="aporte-card">
+    <h3>GTAx</h3>
+    <p class="creator">CREADOR: DAFU</p>
+    <p class="password">CONTRASEÑA: <span class="verde">NINGUNA</span>
+      <p class="peso">PESO: <span class="rojo">544MB</span></p>
+    <div class="video-thumb">
+    <img src="img/x.png" alt="GTAx">
+    </div>
+
+    <a href="https://www.mediafire.com/file/398lh4uf71hl338/X%21.rar/filehttps://www.mediafire.com/file/398lh4uf71hl338/X%21.rar/file" class="btn-descarga">DESCARGA EL APORTE</a>
+  </div>
+
+</div>
+
+<!-- OTRAS SECCIONES -->
+<div id="datas" class="seccion aportes-grid" style="margin-top:60px;">
+
+  <!-- TARJETA 1 - DATAS -->
+  <div class="aporte-card">
+    <h3>ShVz</h3>
+    <p class="creator">CREADOR: SHEIBY</p>
+    <p class="password">CONTRASEÑA: <span class="verde">NINGUNA</span></p>
+    <p class="peso">PESO: <span class="rojo">340MB</span></p>
+
+    <div class="video-thumb">
+      <img src="img/data1.png">
+    </div>
+
+    <a href="https://www.mediafire.com/file/xwrjs5nvqp01kxd/DataShvz.zip/file" class="btn-descarga">DESCARGAR DATA</a>
+  </div>
+
+</div>
+
+
+<div id="descargas" class="seccion aportes-grid" style="margin-top:60px;">
+
+  <div class="aporte-card">
+    <h3>AKA38</h3>
+    <p class="creator">CREADOR: DAFU</p>
+    <p class="password">CONTRASEÑA: <span class="verde">NINGUNA</span></p>
+    <p class="peso">DESCARGAS: <span class="rojo">520</span></p>
+
+    <div class="video-thumb">
+      <img src="img/38.png">
+    </div>
+
+    <a href="https://www.mediafire.com/file/iwjweioh64moaw8/Aka38.rar/file" class="btn-descarga">DESCARGA EL APORTE</a>
+  </div>
+
+  <div class="aporte-card">
+    <h3>GTAx</h3>
+    <p class="creator">CREADOR: DAFU</p>
+    <p class="password">CONTRASEÑA: <span class="verde">NINGUNA</span></p>
+    <p class="peso">DESCARGAS: <span class="rojo">404</span></p>
+
+    <div class="video-thumb">
+      <img src="img/x.png">
+    </div>
+
+    <a href="https://www.mediafire.com/file/398lh4uf71hl338/X%21.rar/filehttps://www.mediafire.com/file/398lh4uf71hl338/X%21.rar/file" class="btn-descarga">DESCARGA EL APORTE</a>
+  </div>
+
+  <div class="aporte-card">
+    <h3>VERDE PRIV</h3>
+    <p class="creator">CREADOR: DAFU</p>
+    <p class="password">CONTRASEÑA: <span class="verde">NINGUNA</span></p>
+    <p class="peso">DESCARGAS: <span class="rojo">317</span></p>
+
+    <div class="video-thumb">
+      <img src="img/verde.png">
+    </div>
+
+    <a href="https://www.mediafire.com/file/cno2noe2h4qcwkl/Verde_Priv.rar/file" class="btn-descarga">DESCARGA EL APORTE</a>
+  </div>
+
+</div>
+
+<div id="redes" class="seccion" style="text-align:center; margin-top:60px;">
+
+  <h2 class="titulo-redes">¿CÓMO ENCONTRARNOS?</h2>
+
+
+  <p class="texto-redes">
+  Únete a nuestra comunidad oficial de Discord donde podrás encontrar nuevos aportes y
+  novedades. De igual manera somos una comunidad en crecimiento, agradecemos tu apoyo. Esto
+  es Damonsthers Mods.
+</p>
+
+  <div class="redes-container">
+
+    <a href="https://discord.gg/https://discord.gg/aN3rmqZ2X6" target="_blank">
+      <img src="img/discord.png" class="icono-red" alt="Discord">
+    </a>
+
+  </div>
+
+</div>
+
+
+<script>
+function mostrar(id, boton) {
+
+  // 1️⃣ Ocultar TODAS las secciones
+  document.querySelectorAll(".seccion").forEach(s => {
+    s.style.display = "none";
+  });
+
+  // 2️⃣ Mostrar SOLO la sección que se clickeó
+  document.getElementById(id).style.display = "grid";
+
+  // 3️⃣ Quitar el rojo activo de todos los botones
+  document.querySelectorAll(".menu button")
+    .forEach(b => b.classList.remove("activo"));
+
+  // 4️⃣ Marcar el botón actual como activo
+  boton.classList.add("activo");
+}
+
+// Forzar que EQUIPO se vea al cargar la página
+document.addEventListener("DOMContentLoaded", function() {
+
+  document.querySelectorAll(".seccion").forEach(s => {
+    s.style.display = "none";
+  });
+
+  document.getElementById("equipo").style.display = "grid";
+
+  document.querySelectorAll(".menu button")
+    .forEach(b => b.classList.remove("activo"));
+
+  document.querySelector(".menu button").classList.add("activo");
+});
+</script>
+
+<div class="music-ui">
+  <button id="btn-music">⏸</button>
+  <div class="barra">
+    <div class="progreso"></div>
+  </div>
+</div>
+
+<script>
+const audio = document.getElementById("musica");
+const btn = document.getElementById("btn-music");
+const progreso = document.querySelector(".progreso");
+
+// FORZAR AUTOPLAY AL ENTRAR
+window.onload = function() {
+  audio.play().catch(err => {
+    console.log("Autoplay bloqueado:", err);
+  });
+  btn.textContent = "⏸";
+};
+
+// BOTÓN PLAY / PAUSA
+btn.addEventListener("click", function() {
+  if (audio.paused) {
+    audio.play();
+    btn.textContent = "⏸";
+  } else {
+    audio.pause();
+    btn.textContent = "▶";
+  }
+});
+
+// BARRA QUE SE MUEVE CON LA MÚSICA
+audio.addEventListener("timeupdate", function() {
+  const porcentaje = (audio.currentTime / audio.duration) * 100;
+  progreso.style.width = porcentaje + "%";
+});
+</script>
+
+
+
+</body>
+</html>
